@@ -20,7 +20,7 @@ text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "
 highlight_theme: tomorrow-night # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-title   : Enggar Tivandi
+title   : Kirintux
 description: > # this means to ignore newlines until "Language & timezone"
   Do not grieve over what has passed, unless it makes you work harder for what is about to come.
 
@@ -39,7 +39,7 @@ author:
   url       : https://enggartivandi.me
   avatar    : https://avatars2.githubusercontent.com/u/64598048 # path or url of avatar image (square)
   bio       : Hanya bocah yang penasaran
-  email     : 
+  email     :
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
   twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
