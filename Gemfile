@@ -33,4 +33,7 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 gem "jekyll-text-theme"
 
 # mini_portile2
-gem 'mini_portile2', '~> 2.4.0'
+gem 'mini_portile2', '~> 2.5'
+
+# nokogiri
+gem 'nokogiri', '~> 1.10', '>= 1.10.10'
