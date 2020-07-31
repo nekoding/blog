@@ -38,3 +38,5 @@ fields:
       format: markdown
   label: article_header
   description: Article header
+pages:
+- _posts/hello-world.md
