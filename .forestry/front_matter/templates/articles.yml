@@ -17,6 +17,15 @@ fields:
   config:
     required: false
   label: key
+- name: date
+  type: datetime
+  label: Date
+  description: ''
+  config:
+    required: false
+    date_format: 
+    time_format: 
+    display_utc: false
 - name: cover
   type: text
   config:
