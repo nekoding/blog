@@ -12,11 +12,6 @@ fields:
   config:
     required: false
   label: title
-- name: article_header
-  type: text
-  config:
-    required: false
-  label: article_header
 - name: key
   type: text
   config:
@@ -31,3 +26,15 @@ fields:
   type: tag_list
   default: []
   label: tags
+- name: article_header
+  type: textarea
+  default: "article_header:\n  type: overlay\n  theme: dark\n  background_color: '#203028'\n
+    \ background_image:\n    gradient: 'linear-gradient(135deg, rgba(34, 139, 87 ,
+    .4), rgba(139, 34, 139, .4))'\n    src: "
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: article_header
+  description: Article header
