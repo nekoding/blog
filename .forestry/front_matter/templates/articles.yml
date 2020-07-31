@@ -1,4 +1,33 @@
 ---
 label: Articles
 hide_body: false
-fields: []
+fields:
+- name: layout
+  type: text
+  config:
+    required: false
+  label: layout
+- name: title
+  type: text
+  config:
+    required: false
+  label: title
+- name: article_header
+  type: text
+  config:
+    required: false
+  label: article_header
+- name: key
+  type: text
+  config:
+    required: false
+  label: key
+- name: cover
+  type: text
+  config:
+    required: false
+  label: cover
+- name: tags
+  type: tag_list
+  default: []
+  label: tags
