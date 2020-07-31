@@ -10,9 +10,9 @@ layout: articles
 title: Hello World
 key: hello-world
 cover: ''
-date: 2020-07-31 00:00:00 +0800
+date: 2020-07-31T00:00:00.000+08:00
 
 ---
 Hello World   
 
-First post 
+First post
