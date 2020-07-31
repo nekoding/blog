@@ -48,4 +48,4 @@ fields:
   label: article_header
   description: Article header
 pages:
-- _posts/hello-world.md
+- _posts/2020-07-31-hello-world.md
