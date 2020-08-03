@@ -37,5 +37,4 @@ fields:
   default: []
   label: tags
 pages:
-- _posts/2020-07-31-hello-world.md
-- _posts/javascript-day-1.md
+- _posts/belajar-cloud-day-1.md
