@@ -5,6 +5,7 @@ tags:
 - es6
 layout: article
 title: 'Javascript Day #2'
+date: 2020-08-03 21:15:00 +0800
 key: belajar-javascript
 ---
 # Async dan Sync
