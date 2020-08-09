@@ -79,20 +79,25 @@ x--
 menyimpan data berdasarkan kata kunci. ada beberapa cara penulisan object di javascript.
 
 ## normal
+```javascript
 var car = {
     roda: 4,
     warna: "merah"
 }
+```
 
 ## dot notation
+```javascript
 var car = {};
 car.roda = 4;
 car.warna = "merah";
-
+```
 ## braket notation
+```javascript
 var car = {};
 car['roda'] = 4;
 car['warna'] = "merah";
+```
 
 # Array
 menyimpan data secara bertumpuk dan dapat diakses menggunakan index. index array di javascript dimulai dari 0.
