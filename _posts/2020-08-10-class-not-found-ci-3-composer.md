@@ -4,7 +4,7 @@ tags:
 - composer
 - php
 layout: article
-title: 'Mengatasi missing class CI3 karena package composer'
+title: 'Mengatasi missing class CI3 karena package composer tidak keload'
 date: 2020-08-10 16:44:00 +0800
 key: mengatasi-missing-class-ci3
 ---
