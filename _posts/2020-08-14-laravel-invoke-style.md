@@ -5,7 +5,7 @@ tags:
 - php
 layout: article
 title: 'Memisahkan method controller dengan invoke di laravel'
-date: 2020-08-11 12:04:00 +0800
+date: 2020-08-14 11:04:00 +0800
 key: memisahkan-method-dengan-invoke
 ---
 
