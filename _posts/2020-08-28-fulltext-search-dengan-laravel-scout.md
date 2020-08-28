@@ -3,6 +3,7 @@ tags:
 - tutorial
 - laravel
 - php
+- scout
 layout: article
 title: 'Fulltext search dengan laravel scout'
 date: 2020-08-28 20:02:00 +0800
@@ -21,31 +22,42 @@ Mengutip dari situs sybase.com
 Jadi intinya full text search mengijinkan kita mencari semua kata yang ingin dicari dari semua kolom di dalam tabel tanpa harus melakukan scanning terhadap baris dan kolom tempat kata itu disimpan. Kalau gambaran umumnya mungkin seperti search engine seperti google kali ya. atau search engine miliki perusahaan - perusahaan e-comerce yang ketika kita mengetik suatu nama barang maka kita akan diberikan data dari barang tersebut serta toko yang relevan / menjual barang yang kita cari tadi.
 
 # Persiapan
-1. Pertama siapkan project laravel-nya ( Jika sudah bisa dilewati untuk step yang ini )
+1. Pertama siapkan project laravel-nya ( Jika sudah bisa dilewati untuk step yang ini )  
+
 ```php
 laravel new scout
 ```
-2. Install package laravel scout 
+
+2. Install package laravel scout  
+
 ```php
 composer require laravel/scout
 ```
-3. Setelah proses instalasi laravel scout berhasil lakukan publish vendor dengan php artisan 
+
+3. Setelah proses instalasi laravel scout berhasil lakukan publish vendor dengan php artisan   
+
 ```php
 php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
 ```
+
 Setelah sukses publish vendor maka akan mengenerate file baru di bagian `config/scout.php`
-4. Install package Laravel Scout MySQL Driver
+4. Install package Laravel Scout MySQL Driver  
+
 ```php
 composer require yab/laravel-scout-mysql-driver
 ```
-5. Jika sudah selanjutnya tambahkan service provider di bagian `config/app.php`
+
+5. Jika sudah selanjutnya tambahkan service provider di bagian `config/app.php`  
+
 ```php
         /*
          * Package Service Providers...
          */
         Yab\MySQLScout\Providers\MySQLScoutServiceProvider::class, 
 ```
-6. Setelah itu tambahkan konfigurasi berikut di `config/scout.php`
+
+6. Setelah itu tambahkan konfigurasi berikut di `config/scout.php`  
+
 ```php
 'mysql' => [
         'mode' => 'NATURAL_LANGUAGE',
@@ -56,11 +68,14 @@ composer require yab/laravel-scout-mysql-driver
         'query_expansion' => false
     ]
 ```
+
 7. sekarang tambahkan .env dengan nilai
+
 ```
 SCOUT_DRIVER=mysql
 SCOUT_QUEUE=false
 ```
+
 8. sekarang waktunya ngoding
 
 # Ngoding
@@ -71,15 +86,18 @@ Untuk tutorial ini saya akan membuat sebuah tabel post yang berelasi dengan tabe
 >kenapa gak bikin tabel user dulu ? karena tabel user udah disediain sama laravel sebagai bawaan aplikasi
 
 1. ketikan perintah 
+
 ```php
 php artisan make:model Post -mcf
 ```
+
 Perintah diatas akan membuat model beserta migration, controller dan factorynya. 
 >keterangan flag :  
 >-m : migration  
 >-c : controller  
 >-f : factory
-2. Jika sudah isikan file migration post dengan
+2. Jika sudah isikan file migration post dengan  
+
 ```php
 <?php
 
@@ -117,9 +135,10 @@ class CreatePostsTable extends Migration
         Schema::dropIfExists('posts');
     }
 }
-
 ``` 
-3. Jika sudah sekarang lanjut ke bagian factory untuk mengenerate dummy data
+
+3. Jika sudah sekarang lanjut ke bagian factory untuk mengenerate dummy data  
+
 ```php
 <?php
 
@@ -136,11 +155,15 @@ $factory->define(Post::class, function (Faker $faker) {
     ];
 });
 ```
-4. Jika sudah sekarang kita buat seeder untuk tabel posts terlebih dahulu dengan cara
+
+4. Jika sudah sekarang kita buat seeder untuk tabel posts terlebih dahulu dengan cara  
+
 ```php
 php artisan make:seeder PostSeeder
 ```
-5. Selanjutnya tinggal kita panggil fungsi factory di dalam file seedernya tadi
+
+5. Selanjutnya tinggal kita panggil fungsi factory di dalam file seedernya tadi  
+
 ```php
 <?php
 
@@ -160,8 +183,10 @@ class PostSeeder extends Seeder
     }
 }
 ```
+
 disini saya ingin mengenerate sebanyak 40 buah data, jika kalian ingin mengurangi / menambahkan jumlahnya silahkan saja.  
-6. Selanjutnya kita tambahkan trait `Searchable` dibagian model Post dan jangan lupa set mass assignment dengan guarded set ke array kosong. + setting juga sekalian relasinya.
+6. Selanjutnya kita tambahkan trait `Searchable` dibagian model Post dan jangan lupa set mass assignment dengan guarded set ke array kosong. + setting juga sekalian relasinya.  
+
 ```php
 <?php
 
@@ -181,15 +206,19 @@ class Post extends Model
     }
 }
 ```
+
 Oke untuk model Post sudah jadi selanjutnya pindah ke model User
 
 ## Membuat model User
 1. Dikarenakan model User sudah diinclude factory jadi tahap bikin factorynya kita skip saja
 2. Buat file user seedernya dengan cara
+
 ```php
 php artisan make:seeder UserSeeder
 ```
+
 3. Lalu panggil fungsi factory ke dalam file
+
 ```php
 <?php
 
@@ -209,7 +238,9 @@ class UserSeeder extends Seeder
     }
 }
 ```
+
 4. Jika sudah tambahkan relasi ke model User
+
 ```php
 <?php
 
@@ -256,10 +287,12 @@ class User extends Authenticatable
     }
 }
 ```
+
 Oke sip dah jadi.
 
 ## Mendaftarkan seeder
-1. Sekarang kita harus mendaftarkan file seeder kita ke DatabaseSeeder.php
+1. Sekarang kita harus mendaftarkan file seeder kita ke DatabaseSeeder.php  
+
 ```php
 <?php
 
@@ -279,20 +312,25 @@ class DatabaseSeeder extends Seeder
     }
 }
 ```
+
 Oke mantabb.
 
 ## Lakukan migrate + seed
-untuk melakukan migrate + seed dapat dilakukan dengan cara
+untuk melakukan migrate + seed dapat dilakukan dengan cara  
+
 ```php
 php artisan migrate --seed
 ```
+
 *Pastikan setingan database di file .env sudah benar sebelum melakukan migrate*
 
 ## Indexing
-Untuk dapat menggunakan full text search di mysql kita perlu mendaftarkan nama kolom ke dalam index. untuk itu kita dapat menggunakan artisan command dengan cara
+Untuk dapat menggunakan full text search di mysql kita perlu mendaftarkan nama kolom ke dalam index. untuk itu kita dapat menggunakan artisan command dengan cara  
+
 ```php
 scout:mysql-index
 ```
+
 Command diatas akan melakukan indexing di setiap tabel yang file modelnya menggunakan trait `Searchable`. Jika ingin tabel tertentu saja bisa dengan cara
 
 ```php
@@ -301,6 +339,7 @@ scout:mysql-index NamaModel
 
 ## Routing 
 Untuk routing nya kita bikin sederhana saja yaitu :
+
 ```php
 <?php
 
@@ -327,6 +366,7 @@ Route::get('/dump', 'PostController@dumpData')->name('post.dump');
 
 ## Controller 
 untuk settingan dicontroller nya kita bikin sederhana saja
+
 ```php
 <?php
 
@@ -350,6 +390,7 @@ class PostController extends Controller
     }
 }
 ```
+
 Untuk sekarang fokus saja ke bagian method index-nya disitu saya memanggil static function search yang merupakan fungsi dari trait `Searchable`. Jika kita buka url `url/post` maka kita akan diberikan data json yang isinya berupa data - data yang memiliki teks `error`. 
 ![Data dengan teks error](/assets/search-error.png)
 Hal ini karena saya melakukan pencarian data dengan teks `error`. Sekarang saya coba ubah teks nya dengan `temporibus`
@@ -377,6 +418,7 @@ class PostController extends Controller
     }
 }
 ```
+
 ![Data dengan teks error](/assets/search-temporibus.png)
 maka akan ditampilkan data yang memiliki teks `temporibus`
 
