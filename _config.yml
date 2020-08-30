@@ -122,7 +122,7 @@ comments:
 
   ## Disqus
   disqus:
-    shortname: kirintux # the Disqus shortname for the site
+    shortname: nekoding # the Disqus shortname for the site
 
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
@@ -169,7 +169,7 @@ search:
 ## => Analytics
 ##############################
 analytics:
-  provider: false # false (default), "google", "custom"
+  provider: google # false (default), "google", "custom"
 
   ## Google Analytics
   google:
