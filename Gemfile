@@ -9,4 +9,4 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "activesupport", ">= 4.1.11"
 
 gem 'mini_portile2', '~> 2.4'
-gem 'nokogiri', '~> 1.11.0.rc2'
+gem 'nokogiri', '~> 1.11.4'
